@@ -3,10 +3,17 @@ CP1404/CP5632 - Practical 2
 Refactored program to determine score status
 """
 
+from random import randint
 
 def main():
     score = float(input("Enter score: "))
     result = calculate_score(score)
+
+    print(result)
+    print("\nNext result is a random score")
+    score = randint(0, 100)
+    result = calculate_score(score)
+    print(f"Random score is {score}")
     print(result)
 
 
