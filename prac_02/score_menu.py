@@ -19,9 +19,20 @@ def main():
     while choice != "Q":
         if choice == "G":
             score = float(input("Enter score: "))
+            result = validate_score(score)
+            print(result)
+        if choice == "P":
             result = calculate_score(score)
             print(result)
 
+
+def validate_score(score):
+    if 0 < score < 100:
+        result = "Invalid score"
+        return result
+    else:
+        result = "Valid score"
+        return result
 
 
 def calculate_score(score):
