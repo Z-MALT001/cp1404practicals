@@ -14,40 +14,40 @@ MENU = """------------------
 """
 
 def main():
+    score = get_valid_number()
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "G":
-            score = float(input("Enter score: "))
-            result = validate_score(score)
+            score = get_valid_number()
+        elif choice == "P":
+            result = determine_result(score)
             print(result)
-        if choice == "P":
-            result = calculate_score(score)
-            print(result)
+        elif choice == "S":
+            print("*" * int(score))
+        else:
+            print("Invalid option")
+        print(MENU)
+        choice = input(">>> ").upper()
+    print("Thank you")
 
 
-def validate_score(score):
-    if 0 < score < 100:
-        result = "Invalid score"
-        return result
-    else:
-        result = "Valid score"
-        return result
+
+def get_valid_number():
+    score = float(input("Enter score: "))
+    while score < 0 or score > 100:
+        print("Invalid input")
+        score = float(input("Enter score: "))
+    return score
 
 
-def calculate_score(score):
-    if score < 0 or score > 100:
-        result = "Invalid score"
-        return result
-    elif score < 50:
-        result = "Bad"
-        return result
+def determine_result(score):
+    if score < 50:
+        return "Bad"
     elif score < 90:
-        result = "Passable"
-        return result
+        return "Passable"
     else:
-        result = "Excellent"
-        return result
+        return "Excellent"
 
 
 main()
