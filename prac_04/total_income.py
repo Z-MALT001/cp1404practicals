@@ -15,12 +15,14 @@ def main():
 
 
 def get_income(incomes, number_of_months):
+    """Get the income from user"""
     for month in range(1, number_of_months + 1):
         income = float(input(f"Enter income for month {str(month)}: "))
         incomes.append(income)
 
 
 def display_report(incomes, number_of_months):
+    """Display the income report data to the user"""
     print("\nIncome Report\n-------------")
     total = 0
     for month in range(1, number_of_months + 1):
