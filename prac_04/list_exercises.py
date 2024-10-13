@@ -2,8 +2,8 @@
 List Exercises
 """
 
-# numbers_str = input("Enter 5 numbers seperated by a comma: ")
-numbers_str = "1,2,3,4,5"
+numbers_str = input("Enter 5 numbers seperated by a comma: ")
+# numbers_str = "1,2,3,4,5"
 numbers_str = numbers_str.split(',')
 # print(repr(numbers_str))
 numbers = []
