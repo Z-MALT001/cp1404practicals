@@ -4,6 +4,10 @@ Quick Picks
 
 from random import randint
 
+AMOUNT_OF_NUMBERS = 6
+MAX_NUMBER = 45
+MIN_NUMBER = 1
+
 
 def main():
     """Get number of quick picks to generate from user then display to user"""
@@ -22,7 +26,7 @@ def generate_quick_picks(number_of_quick_picks):
     quick_picks = []
     for i in range(int(number_of_quick_picks)):
         # quick_pick = [str(randint(1, 45)) for j in range(6)]
-        quick_pick = [randint(1, 45) for j in range(6)]
+        quick_pick = [randint(MIN_NUMBER, MAX_NUMBER) for j in range(AMOUNT_OF_NUMBERS)]
         is_repeat(quick_pick)
         quick_picks.append(quick_pick)
     return quick_picks
@@ -35,7 +39,7 @@ def is_repeat(quick_pick):
             while quick_pick.count(number) > 1:
                 quick_pick.remove(number)
                 # quick_pick.append(str(randint(1, 45)))
-                quick_pick.append(randint(1, 45))
+                quick_pick.append(randint(MIN_NUMBER, MAX_NUMBER))
 
 
 main()
