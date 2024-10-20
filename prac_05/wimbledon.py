@@ -10,18 +10,18 @@ FILENAME = 'wimbledon.csv'
 def main():
     with open(FILENAME, "r", encoding="utf-8-sig") as in_file:
         in_file.readline()
-        in_reader = list(csv.reader(in_file))
-        # print(in_reader)
-        name_to_win, winning_countries = grab_winners_data(in_reader)
+        winners_data = list(csv.reader(in_file))
+        # print(winners_data)
+        name_to_win, winning_countries = grab_winners_data(winners_data)
         print("Wimbledon Champions: ")
         display_winners(name_to_win)
         display_winning_countries(winning_countries)
 
 
-def grab_winners_data(in_reader):
+def grab_winners_data(winners_data):
     name_to_win = {}
     winning_countries = set()
-    for row in in_reader:
+    for row in winners_data:
         try:
             name_to_win[row[2]] += 1
         except KeyError:
