@@ -7,13 +7,13 @@ Get Users Email
 # ask for a name from user. print email
 
 def main():
-    email = input("Email: ")
-    # email = 'zmaltby@gmail.com'
+    # email = input("Email: ")
+    email = 'zmaltby@gmail.com'
     email_to_name = {}
     while email != '':
         user_information = email.split('@')
-        if user_information[0] in email_to_name:
-            print("Email already in use. Try again.")
+        # if user_information[0] == email_to_name.keys():
+        #     print("Email already in use. Try again.")
         if '.' in user_information[0]:
             user_information[0] = user_information[0].replace('.', ' ')
         is_name(email, email_to_name, user_information)
