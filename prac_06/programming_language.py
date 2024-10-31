@@ -15,4 +15,6 @@ class ProgrammingLanguage:
         else:
             return "Invalid type"
 
-
+    def __str__(self):
+        return (f"{self.name}, {self.typing} Typing, "
+                f"Reflection={self.reflection}, First appeared in {self.year}")
