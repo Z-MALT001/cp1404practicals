@@ -1,7 +1,8 @@
 """Languages program
 Estimated Time to Complete: 25 minutes
 Time of start: 9:39am
-TIme of Completion: __
+TIme of Completion: 10:00am
+Actual Time of Completion: 21 minutes
 """
 
 from prac_06.programming_language import ProgrammingLanguage
