@@ -6,6 +6,7 @@ Actual Time of Completion: 42 minutes
 """
 
 CURRENT_YEAR = 2024
+VINTAGE_AGE = 50
 
 
 class Guitar:
@@ -27,8 +28,4 @@ class Guitar:
 
     def is_vintage(self):
         """Determine if guitar is vintage"""
-        age = self.get_age()
-        if age > 50:
-            return True
-        else:
-            return False
+        return self.get_age() >= VINTAGE_AGE

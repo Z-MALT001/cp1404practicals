@@ -11,12 +11,7 @@ class ProgrammingLanguage:
 
     def is_dynamic(self):
         """Determine if programming language is dynamic"""
-        if self.typing == 'Dynamic':
-            return True
-        elif self.typing == 'Static':
-            return False
-        else:
-            return "Invalid type"
+        return self.typing == 'Dynamic'
 
     def __str__(self):
         """Display programming language components"""
