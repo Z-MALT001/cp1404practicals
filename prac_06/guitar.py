@@ -5,6 +5,7 @@ TIme of Completion: 10:46am
 Actual Time of Completion: 42 minutes
 """
 
+CURRENT_YEAR = 2024
 
 class Guitar:
     """Guitar Class"""
@@ -18,13 +19,13 @@ class Guitar:
         """Display guitar components"""
         return f"{self.name} ({self.year}) : ${self.cost:.2f}"
 
-    def get_age(self, current_year):
+    def get_age(self):
         """Get guitar age"""
-        return current_year - self.year
+        return CURRENT_YEAR - self.year
 
     def is_vintage(self):
         """Determine if guitar is vintage"""
-        age = self.get_age(self.year)
+        age = self.get_age()
         if age > 50:
             return True
         else:
