@@ -1,5 +1,6 @@
 """Guitar Test Program
 Estimated time: 20 minutes
+Completion Time: 21 minutes
 """
 from prac_06.guitar import Guitar
 
