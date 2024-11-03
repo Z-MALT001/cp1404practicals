@@ -7,8 +7,10 @@ Actual Time of Completion: 42 minutes
 
 CURRENT_YEAR = 2024
 
+
 class Guitar:
     """Guitar Class"""
+
     def __init__(self, name='', year=0, cost=0.0):
         """Initialise Guitar Class"""
         self.name = name
