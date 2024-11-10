@@ -37,12 +37,40 @@ def main():
         elif choice == "F":
             pass
         elif choice == "U":
-            pass
+            return update_project_status(projects)
         else:
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using Pythonic Project Management")
+
+
+def update_project_status(projects):
+    """Update specific project completion percentage, and priority"""
+    for i, project in enumerate(projects):
+        print(f"{i} {project}")
+
+    project_choice_index = int(input("Project Choice: "))
+    while project_choice_index > len(projects):
+        print("Invalid choice")
+        project_choice = int(input("Project Choice: "))
+    project_choice = projects[project_choice_index]
+    print(project_choice)
+
+    completion_percentage = int(input("New Completion Percentage: "))
+    while not (0 <= completion_percentage <= 100):
+        print("Invalid choice")
+        completion_percentage = int(input("New Completion Percentage: "))
+    priority = int(input("Priority: "))
+    while priority <= 0:
+        print("Invalid choice")
+        priority = int(input("Priority: "))
+    priority = int(priority)
+
+    project_choice.completion_percentage = completion_percentage
+    project_choice.priority = priority
+    projects[project_choice_index] = project_choice
+    return projects
 
 
 def write_to_file(projects):
@@ -52,6 +80,7 @@ def write_to_file(projects):
     with open(out_filename, "w") as out_file:
         for project in projects:
             out_file.write(f"{project.line_format()}\n")
+
 
 def read_from_file():
     """Read data from file"""
