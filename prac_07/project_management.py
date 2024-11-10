@@ -3,7 +3,6 @@ Estimated Completion Time: 1 hour
 
 """
 import datetime
-import json
 from prac_07.project import Project
 
 # date_string = input("Date (d/m/yyyy): ")  # e.g., "30/9/2022"
@@ -35,6 +34,8 @@ def main():
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
+            filter_projects(projects)
+        elif choice == "A":
             pass
         elif choice == "U":
             return update_project_status(projects)
@@ -43,6 +44,18 @@ def main():
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using Pythonic Project Management")
+
+
+def filter_projects(projects):
+    """Filter projects by date set by user"""
+    try:
+        set_start_date = input("Show projects that start after date (dd/mm/yy): ")
+        datetime.datetime.strptime(set_start_date, "%d/%m/%Y").date()
+        filtered_projects = [project for project in projects if project.start_date > set_start_date]
+        for project in filtered_projects:
+            print(project)
+    except ValueError:
+        print("Invalid date format.")
 
 
 def update_project_status(projects):
