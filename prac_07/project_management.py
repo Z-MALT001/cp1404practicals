@@ -3,13 +3,8 @@ Estimated Completion Time: 1 hour
 
 """
 import datetime
+
 from prac_07.project import Project
-
-# date_string = input("Date (d/m/yyyy): ")  # e.g., "30/9/2022"
-# date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
-# print(f"That day is/was {date.strftime('%A')}")
-# print(date.strftime("%d/%m/%Y"))
-
 
 FILENAME = "projects.txt"
 MENU = """(L)oad projects  
@@ -22,6 +17,7 @@ MENU = """(L)oad projects
 
 
 def main():
+    """Main operating function to load, write, save, add, display, update"""
     print("Welcome to Pythonic Project Management")
     projects = read_from_file()
     print(MENU)
@@ -36,14 +32,26 @@ def main():
         elif choice == "F":
             filter_projects(projects)
         elif choice == "A":
-            pass
+            projects = add_new_project(projects)
         elif choice == "U":
-            return update_project_status(projects)
+            projects = update_project_status(projects)
         else:
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using Pythonic Project Management")
+
+
+def add_new_project(projects):
+    """Add new project"""
+    print("Let's add a new project!")
+    name = input("Name: ")
+    start_date = input("Start date (d/mm/yy): ")
+    priority = input("Priority: ")
+    cost_estimate = input("Cost estimate: $")
+    completion_percentage = input("Percent complete: ")
+    projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
+    return projects
 
 
 def filter_projects(projects):
@@ -87,10 +95,9 @@ def update_project_status(projects):
 
 
 def write_to_file(projects):
-    out_filename = input("Enter the name of the output file: ")
-    # Name	Start Date	Priority	Cost Estimate	Completion Percentage
+    """Write to file"""
     print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage")
-    with open(out_filename, "w") as out_file:
+    with open(FILENAME, "w") as out_file:
         for project in projects:
             out_file.write(f"{project.line_format()}\n")
 
