@@ -1,5 +1,6 @@
 """My Guitar Program
 Estimated Completion Time: 40 minutes
+Actual Completion Time: 43 minutes
 """
 
 from prac_07.guitar import Guitar
