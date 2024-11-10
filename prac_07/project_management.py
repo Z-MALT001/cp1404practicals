@@ -29,9 +29,9 @@ def main():
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            pass
+            read_from_file()
         elif choice == "S":
-            pass
+            write_to_file(projects)
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
@@ -43,6 +43,32 @@ def main():
         print(MENU)
         choice = input(">>> ").upper()
     print("Thank you for using Pythonic Project Management")
+
+
+def write_to_file(projects):
+    out_filename = input("Enter the name of the output file: ")
+    # Name	Start Date	Priority	Cost Estimate	Completion Percentage
+    print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage")
+    with open(out_filename, "w") as out_file:
+        for project in projects:
+            out_file.write(f"{project.line_format()}\n")
+
+def read_from_file():
+    """Read data from file"""
+    projects = []
+    # Name	Start Date	Priority	Cost Estimate	Completion Percentage
+    number_of_projects = 0
+    try:
+        with open(FILENAME, "r") as in_file:
+            in_file.readline()  # get rid of header
+            for line in in_file:
+                parts = line.strip().split('\t')
+                projects.append(Project(parts[0], parts[1], parts[2], parts[3], parts[4]))  # add to list of projects
+                number_of_projects += 1
+        print(f"Loaded {number_of_projects} projects from {FILENAME}")
+    except FileNotFoundError:
+        print(f"File not found: {FILENAME}")
+    return projects
 
 
 def display_projects(projects):
