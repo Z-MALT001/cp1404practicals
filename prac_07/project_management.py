@@ -1,6 +1,6 @@
 """Project management
 Estimated Completion Time: 1 hour
-
+Actual Completion Time: >1 hour
 """
 import datetime
 
@@ -17,7 +17,7 @@ MENU = """(L)oad projects
 
 
 def main():
-    """Main operating function to load, write, save, add, display, update"""
+    """Main operating function to load, write, save, add, display, update."""
     print("Welcome to Pythonic Project Management")
     projects = read_from_file()
     print(MENU)
@@ -39,11 +39,12 @@ def main():
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
-    print("Thank you for using Pythonic Project Management")
+    write_to_file(projects)
+    print("Thank you for using custom-built project management software.")
 
 
 def add_new_project(projects):
-    """Add new project"""
+    """Add new project."""
     print("Let's add a new project!")
     name = input("Name: ")
     start_date = input("Start date (d/mm/yy): ")
@@ -55,7 +56,7 @@ def add_new_project(projects):
 
 
 def filter_projects(projects):
-    """Filter projects by date set by user"""
+    """Filter projects by date set by user."""
     try:
         set_start_date = input("Show projects that start after date (dd/mm/yy): ")
         datetime.datetime.strptime(set_start_date, "%d/%m/%Y").date()
@@ -67,7 +68,7 @@ def filter_projects(projects):
 
 
 def update_project_status(projects):
-    """Update specific project completion percentage, and priority"""
+    """Update specific project completion percentage, and priority."""
     for i, project in enumerate(projects):
         print(f"{i} {project}")
 
@@ -95,15 +96,19 @@ def update_project_status(projects):
 
 
 def write_to_file(projects):
-    """Write to file"""
-    print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage")
-    with open(FILENAME, "w") as out_file:
-        for project in projects:
-            out_file.write(f"{project.line_format()}\n")
+    """Write to file."""
+    question = input("Would you like to save (y/n)? ")
+    if question.upper() == "Y":
+        with open(FILENAME, "w") as out_file:
+            print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=out_file)
+            for project in projects:
+                out_file.write(f"{project.line_format()}\n")
+    else:
+        pass
 
 
 def read_from_file():
-    """Read data from file"""
+    """Read data from file."""
     projects = []
     # Name	Start Date	Priority	Cost Estimate	Completion Percentage
     number_of_projects = 0
@@ -121,7 +126,7 @@ def read_from_file():
 
 
 def display_projects(projects):
-    """Display organised projects to user"""
+    """Display organised projects to user."""
     print("Incomplete projects")
     incomplete_projects = [f"\t{project}" for project in projects if not project.is_complete()]
     print('\n'.join(incomplete_projects))
