@@ -21,7 +21,7 @@ def main():
     choice = input(">>> ").lower()
     while choice != 'q':
         if choice == 'c':
-            pass
+            current_taxi = choose_taxi(taxis, current_taxi)
         if choice == 'd':
             bill = drive_taxi(bill, current_taxi, taxis)
         else:
@@ -47,7 +47,18 @@ def drive_taxi(taxis, current_taxi, bill):
     return bill
 
 
-
+def choose_taxi(taxis, current_taxi):
+    """Choose a taxi"""
+    for i, taxi in enumerate(taxis):
+        print(f"{i} - {taxi}")
+    try:
+        taxi_choice = int(input("Choose taxi: "))
+        current_taxi = taxis[taxi_choice]
+    except ValueError:
+        print("Not a valid number")
+    except IndexError:
+        print("Invalid option")
+    return current_taxi
 
 if __name__ == "__main__":
     main()
