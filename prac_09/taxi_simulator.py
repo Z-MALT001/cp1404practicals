@@ -23,11 +23,35 @@ def main():
         if choice == 'c':
             pass
         if choice == 'd':
-            pass
+            bill = drive_taxi(bill, current_taxi, taxis)
         else:
             print("Invalid choice...")
-        print(f"Bill to date: ${bill:.2f}")
-        print(MENU)
-        choice = input(">>> ").lower()
+            print(f"Bill to date: ${bill:.2f}")
+            print(MENU)
+            choice = input(">>> ").lower()
+        print(f"Total trip cost: {bill:.2f}")
+        print("Taxis are now:")
+        for i, taxis in enumerate(taxis):
+            print(f"{i}: {taxis}")
+
+
+def drive_taxi(taxis, current_taxi, bill):
+    """Drive the chosen taxi"""
+    if not current_taxi:
+        print("You need to choose a taxi before you can drive.")
+    else:
+        distance = int(input("Drive how far? "))
+        current_taxi.start_fare()
+        current_taxi.drive(distance)
+        bill += current_taxi.get_fare()
+    return bill
+
+
+
+
+if __name__ == "__main__":
+    main()
+
+
 
 
