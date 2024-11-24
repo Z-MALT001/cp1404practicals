@@ -7,7 +7,8 @@ Estimated: 45 min
 from taxi import Taxi
 from silver_service_taxi import SilverServiceTaxi
 
-MENU = """q)uit, c)hoose taxi, d)rive"""
+MENU = """q)uit, c)hoose, d)rive"""
+
 
 def main():
     """Taxi Simulator main function"""
@@ -17,28 +18,29 @@ def main():
     bill = 0.0
 
     print("Let's Drive!!")
+    # print(f"Bill to date: ${bill:}")
     print(MENU)
     choice = input(">>> ").lower()
     while choice != 'q':
         if choice == 'c':
             current_taxi = choose_taxi(taxis, current_taxi)
-        if choice == 'd':
-            bill = drive_taxi(bill, current_taxi, taxis)
-        else:
-            print("Invalid choice...")
-            print(f"Bill to date: ${bill:.2f}")
-            print(MENU)
-            choice = input(">>> ").lower()
-        print(f"Total trip cost: {bill:.2f}")
-        print("Taxis are now:")
-        for i, taxis in enumerate(taxis):
-            print(f"{i}: {taxis}")
+        elif choice == 'd':
+            bill = drive_taxi(taxis, current_taxi, bill)
+        # else:
+        #     print("Invalid choice...")
+        print(f"Bill to date: ${bill:}")
+        print(MENU)
+        choice = input(">>> ").lower()
+    print(f"Total trip cost: {bill:.2f}")
+    print("Taxis are now:")
+    for i, taxis in enumerate(taxis):
+        print(f"{i}: {taxis}")
 
 
 def drive_taxi(taxis, current_taxi, bill):
     """Drive the chosen taxi"""
     if not current_taxi:
-        print("You need to choose a taxi before you can drive.")
+        print("You need to choose a taxi before you can drive")
     else:
         distance = int(input("Drive how far? "))
         current_taxi.start_fare()
@@ -60,9 +62,6 @@ def choose_taxi(taxis, current_taxi):
         print("Invalid option")
     return current_taxi
 
+
 if __name__ == "__main__":
     main()
-
-
-
-
